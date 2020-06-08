@@ -1,5 +1,5 @@
 <template>
-    <el-card class="pl15 pr15">
+    <el-card class="pl15 pr15 pb15" style="height: 100%">
         <div slot="header" class="clearfix">
             <span>卡片名称</span>
             <el-button @click="handleSave" style="float: right; padding: 7px 15px" type="primary">保存</el-button>

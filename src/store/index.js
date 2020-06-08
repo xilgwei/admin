@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     },
     mutations: {
         changeLogin (state, user) {
-            console.log(user)
+            console.log('---',user)
             state.token = user.token
             localStorage.setItem('token', user.token)
         }

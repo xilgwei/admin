@@ -1,12 +1,9 @@
 import request from '@/config/request'
 
-var user = {}
-user.propotype.userInfo = function() {
+export function userInfo(data) {
     return request({
         url: 'users/info',
         method: 'post',
-        data: {}
+        data: data
     })
 }
-
-export default user

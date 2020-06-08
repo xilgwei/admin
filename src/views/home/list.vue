@@ -1,5 +1,5 @@
 <template>
-    <div class="bgff pl15 pr15">
+    <div class="bgff pl15 pr15 pb15">
         <div class="pt15 pb15">
             <el-date-picker
                     class="mr15"
