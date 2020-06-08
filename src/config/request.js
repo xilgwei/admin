@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {BASE_URL} from './env'
+import router from '@/router'
 
 const service = axios.create({
     baseURL: BASE_URL, // url = base url + request url
@@ -8,7 +9,9 @@ const service = axios.create({
 })
 service.interceptors.request.use(
     config => {
-
+        if (localStorage.getItem('token')) {
+            config.headers.token = localStorage.getItem('token')
+        }
         return config
     },
     error => {
@@ -20,9 +23,13 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
     response => {
-        const res = response.data;
-
-        return res
+        if (response.status == 203) {
+            router.replace({
+                path: '/login',
+                query: {redirect: router.currentRoute.fullPath}//当前页面
+            })
+        }
+        return response
     },
     error => {
         return Promise.reject(error)

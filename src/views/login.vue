@@ -4,8 +4,8 @@
             <el-card icon="log-in" title="欢迎登录" :bordered="false">
                 <div slot="header" class="clearfix">欢迎登录</div>
                 <el-form ref="form" :model="form" :rules="loginRules" class="prefix">
-                    <el-form-item prop="name">
-                        <el-input prefix-icon="el-icon-user" v-model="form.name"></el-input>
+                    <el-form-item prop="username">
+                        <el-input prefix-icon="el-icon-user" v-model="form.username"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
                         <el-input prefix-icon="el-icon-unlock" v-model="form.password" type="password"></el-input>
@@ -23,19 +23,21 @@
 <script>
     import {loginRules} from '../common/rules'
     import {login} from '../api/login'
+    import {mapMutations} from 'vuex'
 
     export default {
         components: {},
         data() {
             return {
                 form: {
-                    name: '',
+                    username: '',
                     password: ''
                 },
                 loginRules
             }
         },
         methods: {
+            ...mapMutations(['changeLogin']),
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -48,11 +50,11 @@
                 });
             },
             async login() {
-                const res = await login(this.form);
-                if(res.code == 200){
-                    alert('submit!');
-                } else {
-
+                const res = await login(this.form)
+                if (res.status == 200) {
+                    console.log(res)
+                    this.changeLogin(res)
+                    this.$router.push('/')
                 }
             }
 
@@ -83,10 +85,10 @@
         }
         &-con {
             position: absolute;
-            right: 160px;
+            left: calc(50% - 200px);
             top: 50%;
             transform: translateY(-60%);
-            width: 300px;
+            width: 400px;
 
         &-header {
             font-size: 16px;

@@ -83,6 +83,15 @@ export function resetRouter() {
 }
 router.beforeEach((to, from, next) => {
     document.title = to.name;
-    next();
+    // if (to.path === '/login') {
+    //     next()
+    // } else {
+    //     let token = localStorage.getItem('token')
+    //     if (token === null || token === '') {
+    //         next('/login')
+    //     } else {
+            next()
+    //     }
+    // }
 })
 export default router;

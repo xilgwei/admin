@@ -29,6 +29,7 @@
     import CountTo from '../../components/count-to'
     import { ChartPie, ChartBar } from '../../components/charts'
     import Example from './example.vue'
+    import user, {userInfo} from "../../api/user";
     export default {
         components: {
             InforCard,
@@ -66,7 +67,15 @@
             }
         },
         mounted() {
-            console.log(111111)
+
+        },
+        methods: {
+            async userInfo () {
+                const res = await user.userInfo()
+                if (res.status == 200) {
+                    console.log(1111)
+                }
+            }
         }
     }
 </script>
